@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="comentarios-container">
+
+        </div>
+
+    </div>
+
+</body>
+<script>
+    const coment = []
+    const inputContainer = document.createElement("div")
+    const input = document.createElement("input")
+    const comentatiosContainer = document.getElementById("comentarios-container")
+
+
+    input.classList.add("input")
+    input.addEventListener("keydown", (e) => {
+        handlerEnter(e, null)
+
+    })
+
+    comentatiosContainer.appendChild(inputContainer)
+    inputContainer.appendChild(input)
+
+    function handlerEnter(e, current) {
+        if (e.key === "Enter" && e.target.value != "") {
+            const newComent = {
+                text: e.target.value,
+                like: 0,
+                reponses: []
+            }
+
+            if (current === null) {
+                coment.push(newComent)
+            }
+            else {
+                current.reponses.push(newComent)
+            }
+            e.target.value = ""
+            comentatiosContainer.innerHTML = ""
+            comentatiosContainer.appendChild(inputContainer)
+            console.log(coment)
+            renderComent(coment, comentatiosContainer)
+
+        }
+    }
+    function renderComent(arr, parent) {
+
+        arr.forEach(element => {
+            const comentContainer = document.createElement("div")
+            comentContainer.classList.add("comentContainer")
+            const responseContainer = document.createElement("div")
+            responseContainer.classList.add("responseContainer")
+
+            const replyButton = document.createElement("button")
+            const likebutton = document.createElement("button")
+            const textContainer = document.createElement("div")
+            textContainer.innerText = element.text
+            const actionsContainer = document.createElement("div")
+
+            replyButton.innerText = "Repplay"
+            likebutton.innerText = `${element.like}` > 0 ? `${element.like} Like`
+                : "Like"
+            replyButton.addEventListener("click", (e) => {
+                const newInput = inputContainer.cloneNode(true)
+                newInput.value = ""
+                newInput.focus()
+                newInput.addEventListener("keydown", e => {
+                    handlerEnter(e, element)
+                })
+                comentContainer.insertBefore(newInput, responseContainer)
+
+            })
+
+            likebutton.addEventListener("click", (e) => {
+                element.like++
+                likebutton.innerText = `${element.like}` > 0 ? `${element.like} Like`
+                    : "Like"
+
+
+
+            })
+            comentContainer.appendChild(textContainer)
+            comentContainer.appendChild(actionsContainer)
+            actionsContainer.appendChild(likebutton)
+            actionsContainer.appendChild(replyButton)
+
+            comentContainer.appendChild(responseContainer)
+            if (element.reponses.length > 0) {
+                renderComent(element.reponses, responseContainer)
+            }
+            parent.appendChild(comentContainer)
+
+
+
+        });
+
+    }
+    for (const i = 0; i < 3; i++) {
+        setTimeout(function () {
+            console.log(i)
+
+        })
+
+    }
+
+</script>
+
+</html>

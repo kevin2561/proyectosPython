@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #title {
+        font-size: 90px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    #main-colores {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 700px;
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <div>
+        <h1 id="title">Color Random</h1>
+    </div>
+
+    <div id="main-colores">
+        <div>
+            Color en RGB es <h4 id="color-rgb"></h4>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    let colores = ["red", "green", "blue", "black", "purple", "brown"]
+    let coloresRGB = ["A", "B", "C", "D", "E", "F", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    const title = document.getElementById("title")
+    const mainColores = document.getElementById("main-colores")
+    const colorRGB = document.getElementById("color-rgb")
+
+
+
+    setInterval(() => {
+        let random = Math.floor(Math.random() * colores.length)
+        title.style.color = `${colores[random]}`
+        let fondoRandom = ""
+        for (let i = 0; i < 6; i++) {
+
+            fondoRandom += coloresRGB[Math.floor(Math.random() * coloresRGB.length)]
+
+        }
+        mainColores.style.background = `#${fondoRandom}`
+        colorRGB.innerText = `#${fondoRandom}`
+
+
+    }, 3000);
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

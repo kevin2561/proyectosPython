@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        position: relative;
+        color: rgb(7, 51, 20);
+        text-align: center;
+    }
+
+    #ventana-modal {
+        width: 500px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid red;
+        /* align-content: center; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    #modal {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        background-color: black;
+        display: none;
+        z-index: 1200;
+        border: 5px solid black;
+    }
+
+    #cerrar {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+</style>
+
+<body>
+    <div id="ventana-modal">
+
+        Saber mas
+        <button id="btn-modal">Abrir Modal</button>
+
+        <div id="modal">
+            <button id="cerrar">X</button>
+            xxxxx
+        </div>
+        XXXXXXXXXX
+
+    </div>
+
+</body>
+<script>
+    const btnModal = document.getElementById("btn-modal")
+    const ventanaModal = document.getElementById("ventana-modal")
+
+    const modal = document.getElementById("modal")
+    const cerrar = document.getElementById("cerrar")
+
+
+    function mostrarModal() {
+        modal.style.display = "block"
+        document.body.style.background = "#000000d4"
+
+
+    }
+    function oculatarModal() {
+        modal.style.display = "none"
+        document.body.style.background = "white"
+
+
+    }
+    btnModal.addEventListener("click", mostrarModal)
+    cerrar.addEventListener("click", oculatarModal)
+</script>
+
+</html>

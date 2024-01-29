@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="menu">
+            <div id="shopping-cart-cointainer" class="hide">
+
+            </div>
+            <div id="store-cotainer">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+<script>
+    const db = {
+        methods: {
+            find: (id) => {
+                return db.items.find(item => item.id === id)
+            },
+            remove: (items) => {
+                items.forEach(item => {
+                    const product = db.methods.find(item.id)
+                    product.qty = product.qty - item.id
+
+                });
+            }
+        },
+        items: [
+            { id: 0, title: "Pizza", price: 50, qty: 6 },
+            { id: 1, title: "Uvas", price: 950, qty: 16 },
+            { id: 2, title: "Mesas", price: 170, qty: 80 }
+
+        ]
+    }
+
+
+
+    const shoppingCart = {
+        items: [], methods: {
+            add: (id, qty) => {
+                const cardItem = shoppingCart.methods.get(id)
+                if (cardItem) {
+                    if (shoppingCart.cardItem.hasInventario(id, qty, qty + cardItem.qty)) {
+                        cardItem.qty += qty
+                    } else {
+                        alert("Nada Vacio")
+                    }
+                } else {
+                    shoppingCart.items.push(id, qty)
+                }
+
+            },
+            remove: (id, qty) => {
+                const cardItem = shoppingCart.methods.get(id)
+                if (cardItem.qty - qty > 0) {
+                    cardItem.qty -= qty
+
+                } else {
+                    shoppingCart.items = shoppingCart.items.filter(item => item.id !== id)
+                }
+            },
+            count: () => {
+                return shoppingCart.items.reduce((acc, item) => acc + item.qty, 0)
+            },
+            get: (id, qty) => {
+                const index = shoppingCart.items.findIndex(item => item.id === id)
+                return index >= 0 ? shoppingCart.items[index] : "Vacio"
+
+            },
+            getTotal: (id, qty) => {
+                let shoppingTotal = shoppingCart.items.reduce((acc, item) => {
+                    const found = db.methods.find(item.id)
+                    return (acc + found.price * item.qty)
+                }, 0)
+                return shoppingTotal
+            },
+            hasInventario: (id, qty) => {
+                return db.items.find(item => item.id === id).qty - qty >= 0
+            },
+            purchase: () => {
+
+                db.methods.remove(shoppingCart.items)
+                shoppingCart.items = []
+            }
+        }
+    }
+
+    renderStore()
+    function renderStore() {
+        const html = db.items.map(item => {
+            return `
+                <div clas="item">
+                    <div class="title"> ${item.title}</div>
+                    <div class="price">${numberToCurrent(item.price)}</div>
+                    <div class="qty">${item.qty}</div>
+                    <div class="action">
+                        <button class="add" data-id=${item.id}>shopping Card</button>
+                </div>
+
+
+                    
+                    </div>
+            `
+        })
+        document.querySelector("#store-cotainer").innerHTML= html.join("")
+
+    }
+
+
+    function numberToCurrent(n) {
+        return new Intl.NumberFormat("en-US", {
+            maximumFractionDigits: 2,
+            style: "currency",
+            currency: "USD"
+        }).format(n)
+    }
+
+
+</script>
+
+</html>
