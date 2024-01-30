@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Simple</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+#login-container, #main-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#login-container {
+  display: block;
+}
+
+#main-container {
+  display: none;
+}
+
+</style>
+<body>
+
+<div id="login-container">
+  <h2>Login</h2>
+  <form id="login-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <br>
+    <button type="button" onclick="login()">Login</button>
+  </form>
+</div>
+
+<div id="main-container" style="display:none;">
+  <h2>Bienvenido a la Página Principal</h2>
+  <button onclick="logout()">Salir</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+  // Verificar si hay información de inicio de sesión almacenada en sessionStorage
+  var isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+  toggleContainers(isLoggedIn);
+});
+
+function login() {
+  // Verificar las credenciales (puedes personalizar esto)
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+
+  if (username === 'usuario' && password === 'contraseña') {
+    // Almacenar información de inicio de sesión en sessionStorage
+    sessionStorage.setItem('isLoggedIn', 'true');
+    toggleContainers(true);
+  } else {
+    alert('Credenciales incorrectas. Intenta de nuevo.');
+  }
+}
+
+function logout() {
+  // Eliminar la información de inicio de sesión de sessionStorage al salir
+  sessionStorage.removeItem('isLoggedIn');
+  toggleContainers(false);
+}
+
+function toggleContainers(isLoggedIn) {
+  // Mostrar u ocultar los contenedores según el estado de inicio de sesión
+  document.getElementById('login-container').style.display = isLoggedIn ? 'none' : 'block';
+  document.getElementById('main-container').style.display = isLoggedIn ? 'block' : 'none';
+}
+
+</script>
+</html>
