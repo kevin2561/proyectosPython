@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<script>
+    function isAnagrama(word, word2) {
+        let removerspaces = function (str) {
+            let result = ""
+            for (const element of str) {
+                if (element !== " ") {
+                    result += element.toLowerCase()
+                }
+            }
+            return result
+        }
+
+        let sortString = function (str) {
+            return removerspaces(str).split("").sort().join("")
+
+
+        }
+
+        return sortString(word) === sortString(word2)
+    }
+    // console.log(isAnagrama("amor", "roma"))
+    // console.log(isAnagrama("listen", "silent"))
+
+    function insterString(str1, str2) {
+        let interction = ""
+        const seechar = {}
+        for (const element of str1) {
+            const char = element
+            if (str2.includes(char) && !seechar[char]) {
+                interction += char
+                seechar[char] = true
+            }
+
+        }
+        return interction
+
+    }
+    // console.log(insterString("hello", "wo ld"))
+
+    function fibonacci(n) {
+        if (n <= 2) {
+            return "error"
+        }
+        let fibo = [0, 1]
+        for (let i = 2; i < n; i++) {
+            fibo[i] = fibo[i - 1] + fibo[i - 2]
+
+        }
+        return fibo.slice(0, n)
+    }
+    // console.log(fibonacci(10))
+
+    // function fiizbuzz() {
+    //     let mesensage = ""
+    //     for (let i = 1; i <= 100; i++) {
+    //         if (i % 3 === 0 && i % 5 === 0) {
+    //             mesensage += "fizzbuzz" + "\n"
+    //         }
+    //         else if (i % 3 === 0) {
+    //             mesensage += "fizz" + "\n"
+
+    //         }
+    //         else if (i % 5 === 0) {
+    //             mesensage += "buzz" + "\n"
+
+    //         } else {
+    //             mesensage += i + "\n"
+    //         }
+    //     }
+    //     return mesensage
+    // }
+    // console.log(fiizbuzz()
+    // )
+
+    // let arrayNumber = [500, 100, 1, 5, 6, 7, , 8, 8, 8, 5]
+
+    // let result = [...arrayNumber].sort((a, b) => a - b, 0)
+    // console.log(arrayNumber)
+    // console.log("----------------------")
+
+    // console.log(result)
+
+    // let xd = "hola perros"
+    // let result = xd.split("").reverse().join("/").toUpperCase()
+    // console.log(result)
+
+    let oo = "osO".toLowerCase()
+    let xaa = oo.split("").reverse().join("").toLowerCase()
+    let resultxx = oo === xaa
+    console.log(oo)
+
+    console.log(xaa)
+
+    console.log(resultxx)
+
+
+</script>
+
+</html>
