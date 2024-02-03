@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+
+    }
+
+    #inicio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #main-contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        width: 1000px;
+        height: auto;
+    }
+
+    .cajas {
+        flex: 1 0 30%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        margin: 5px;
+        text-align: center;
+        padding: 10px;
+
+    }
+
+    .cajas img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .texto {
+        width: 100%;
+        font-size: 18px;
+        display: none;
+    }
+</style>
+
+<body>
+    <main id="inicio">
+        <section id="main-contenedor">
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+            <div class="cajas">
+                <img src="../imagenes/ember.png" alt="">
+
+                <div class="texto">
+                    <h1>GO</h1>
+                    <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui! Illum obcaecati, nemo
+                        voluptate
+                        voluptates quibusdam voluptatibus praesentium alias, neque optio expedita eos modi fugit
+                        corrupti
+                        excepturi saepe molestias inventore tempora? Illo eveniet ullam ipsa ab blanditiis, placeat fuga
+                        repudiandae!</span>
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+</body>
+<script>
+
+</script>
+<script>
+    let cajas = document.querySelectorAll("#main-contenedor .cajas")
+    let texto = document.querySelectorAll(".texto")
+    let img = document.querySelectorAll("img")
+
+    cajas.forEach((caja, index) => {
+
+
+        caja.addEventListener("mouseenter", function (e) {
+            e.preventDefault();
+            caja.style.cursor = "pointer";
+            texto[index].style.display="block"; 
+            img[index].style.width="30%"; 
+            img[index].style.height="30%"; 
+
+
+            console.log("entre")
+        })
+
+        caja.addEventListener("mouseleave", function (e) {
+            texto[index].style.display="none"; 
+            img[index].style.width="100%"; 
+            img[index].style.height="100%"; 
+            console.log("sali")
+        })
+
+    }
+
+    )
+</script>
+
+</html>
